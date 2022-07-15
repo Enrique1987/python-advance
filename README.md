@@ -8,6 +8,8 @@ This repository includes all my personal notes taken during the different course
 
 ## Python Interview Questions
 
+### Data Type questions
+
 #### 1 Wha is the result of this ?
           x = 0.1 + 0.1 + 0.1
           y = 0.3
@@ -25,3 +27,22 @@ One simple way to compare floats could be :
     round(x, 5) == round(y, 5)
 
    True.
+
+#### How would you round a variable that represent the Age of somebody.
+
+    With `floor` , the reason is that someone who have 23 years and 11 months is said to have 23 years, rounding is always downwards.
+	
+#### What is the result of:
+
+    floor(-10.4) result: -11
+    floor(11.4) result: 11
+	
+#### what is the different of decimal and float in python ?
+
+	One of the differences they have is the way they store the data, float is represented as a fraction while decimal is stored as a string. 
+    Because of this some floats do not have exact representation such as 0.1.
+	
+#### floats vs decimals, what are the advantages of each one ?	
+
+    floats: faster.
+	decimals: more precise.
