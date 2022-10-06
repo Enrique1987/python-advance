@@ -8,9 +8,35 @@ This repository includes all my personal notes taken during the different course
 
 ## Python Interview Questions
 
-### Data Type questions
 
-#### 1 Wha is the result of this ?
+### In your experience as a python developer could you tell me about bad practices you have seen written. ?
+
+- The most common is not writing according to pep8, in my company it was corrected by putting an autocheck when you wanted to make a Pull Request.
+- Code repeated or no.
+- variables and funktions with non-self-clearing names
+- Magic numbers
+- Death code
+- prints as logs (interesting in the dev phase but not in prod if it doesnt bring any extra value)
+- poorly organised code, should be: first imports, later funcions that you going to use and later the main.
+- O() notation
+
+
+### without writing the code, how would you compare 2 dataframes to see if they are the same ?
+
+to compare 2 dataframes and see if they are the same I would use pandas. 
+If what we want to see is if our dataframe A and dataframe B are equal before we put to compare by means of programming the first thing that would do is some simple verifications to know if realment is worth comparing them (this is as if we are doctors and we want to save the life to a patient, the first thing that interests us is if esata alive, to know the pulse etc..) in our case what interests us first verifications would do it by means of dataframA.info() dataframeB.ingo(), if simply they have different dimension already we know that they cannot be equal.
+
+Let's imagine they have the same dimension, the next thing we need to do is to set all the columns to the same name and the same data type, and then we are ready to write the code to compare them.
+
+
+### Imagine your dataframe contains nan values, how would you compare the two dataframes ?
+
+Using methods like dataframe1.compare(dataframe2) will not work if the dataframe had null values as the  the comparation nan == nan is false. ( we can not compare two unknow thins
+because we dont know them,) so in this case it may be interesting to replace nan by some value you know such as "nan" or 999999 and then proceed to compare them again.
+
+### Data Type questions(are not part of an interview as a python developer as they are very advanced)
+
+#### 1 What is the result of this ?
           x = 0.1 + 0.1 + 0.1
           y = 0.3
           x == y
