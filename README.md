@@ -18,8 +18,19 @@ This repository includes all my personal notes taken during the different course
 - Death code
 - prints as logs (interesting in the dev phase but not in prod if it doesnt bring any extra value)
 - poorly organised code, should be: first imports, later funcions that you going to use and later the main.
-- O() notation
+- O() notation.
+- Clases that should be a function.(I see that typical error from people that come from a OOP like Java)
+- Empty Except Blocks and Poor Error messages.
 
+### What about Python best practices ?
+
+Well basically all in the Zen of Python.
+
+- Simple is better than complex.
+- Flat is better thatn ntested.
+- Readability counts.
+- If the implementation is hard to expain, its a bad idea.
+- If the implementation is easy to explain, it ba be a good idea.
 
 ### without writing the code, how would you compare 2 dataframes to see if they are the same ?
 
