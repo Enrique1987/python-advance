@@ -32,6 +32,62 @@ Well basically all in the Zen of Python.
 - If the implementation is hard to expain, its a bad idea.
 - If the implementation is easy to explain, it ba be a good idea.
 
+### can you tell me what is the output of that code ? 
+
+```
+def analyzeAge( age ):
+   if age < 21:
+       print "You are a child"
+   if age >= 21: 
+       print "You are an adult"
+   else:   #Handle all cases where 'age' is negative 
+       print "The age must be a positive integer!"
+
+analyzeAge( 18 )  #Calling the function
+```
+
+
+**Solution**
+
+>You are a child
+>The age must be a positive integer!
+
+### Could you explain why is failing and how would you fix it ? 
+
+its failing caise the second if should be a elif.
+
+### continue vs pass vs break:
+
+```
+a = [1, 2, 0, 3]
+for element in a:
+    if not element:
+        pass
+    print(element)
+```
+
+vs
+
+```
+a = [1, 2, 0, 3]
+for element in a:
+    if not element:
+        continue
+    print(element)
+```
+vs
+
+```
+a = [1, 2, 0, 3]
+for element in a:
+    if not element:
+        break
+    print(element)
+```
+
+**solution**
+`pass` will do nothing(afther the pass will print) but `continue` will ignore the complete loop(not printing if enter in the continue) mean `break` will break the loop and finish
+
 ### without writing the code, how would you compare 2 dataframes to see if they are the same ?
 
 to compare 2 dataframes and see if they are the same I would use pandas. 
