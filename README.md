@@ -9,11 +9,24 @@ This repository includes all my personal notes taken during the different course
 ## Python Interview Questions
 
 
-### In your experience as a python developer could you tell me about bad practices you have seen written. ?
+### In your experience as a python developer could you tell me about bad practices you have seen written ?
 
-- The most common is not writing according to pep8, in my company it was corrected by putting an autocheck when you wanted to make a Pull Request.
-- Code repeated or no.
-- variables and funktions with non-self-clearing names
+(they do not follow a specific order)
+
+- **The most common is not writing according to pep8** (severity low)  
+   Solution: We set up the automated linter every time someone made a commit.
+- **Code repeated(severity medium)  ** 
+   Repeating code is a way of not having it optimised.
+   Solution: As personal tip I like to review the code after a few days with fresh eyes to see if there is anything that could be improved.
+
+- **Variables and funktions with non-self-clearing names (severity medium)**
+    it is very common to see things like:
+	```
+	for x in var1:
+	    # do something with x
+	```	
+    Affects the readability of the code.
+	
 - Magic numbers
 - Death code
 - prints as logs (interesting in the dev phase but not in prod if it doesnt bring any extra value)
