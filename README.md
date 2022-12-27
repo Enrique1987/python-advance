@@ -9,18 +9,18 @@ This repository includes all my personal notes taken during the different course
 ## Python Interview Questions
 
 
-### In your experience as a python developer could you tell me about bad practices you have seen written ?
+#### In your experience as a python developer could you tell me about bad practices you have seen written ?
 
 (they do not follow a specific order)
 
 - **The most common is not writing according to pep8** (severity low)  
-   Solution: We set up the automated linter every time someone made a commit.
-- **Code repeated(severity medium)  ** 
-   Repeating code is a way of not having it optimised.
-   Solution: As personal tip I like to review the code after a few days with fresh eyes to see if there is anything that could be improved.
+   *Solution:* We set up the automated linter every time someone made a commit.
+- **Code repeated(severity medium)**  
+   Repeating code is a way of not having it optimised.  
+   *Solution:* As personal tip I like to review the code after a few days with fresh eyes to see if there is anything that could be improved.
 
-- **Variables and funktions with non-self-clearing names (severity medium)**
-    it is very common to see things like:
+- **Variables and funktions with non-self-clearing names (severity medium)**  
+    It is very common to see things like:
 	```
 	for x in var1:
 	    # do something with x
@@ -35,7 +35,7 @@ This repository includes all my personal notes taken during the different course
 - Clases that should be a function.(I see that typical error from people that come from a OOP like Java)
 - Empty Except Blocks and Poor Error messages.
 
-### What about Python best practices ?
+#### What about Python best practices ?
 
 Well basically all in the Zen of Python.
 
@@ -45,7 +45,7 @@ Well basically all in the Zen of Python.
 - If the implementation is hard to expain, its a bad idea.
 - If the implementation is easy to explain, it ba be a good idea.
 
-### can you tell me what is the output of that code ? 
+#### can you tell me what is the output of that code ? 
 
 ```
 def analyzeAge( age ):
@@ -65,11 +65,11 @@ analyzeAge( 18 )  #Calling the function
 >You are a child
 >The age must be a positive integer!
 
-### Could you explain why is failing and how would you fix it ? 
+#### Could you explain why is failing and how would you fix it ? 
 
 its failing caise the second if should be a elif.
 
-### continue vs pass vs break:
+#### continue vs pass vs break:
 
 ```
 a = [1, 2, 0, 3]
@@ -101,7 +101,7 @@ for element in a:
 **solution**
 `pass` will do nothing(afther the pass will print) but `continue` will ignore the complete loop(not printing if enter in the continue) mean `break` will break the loop and finish
 
-### without writing the code, how would you compare 2 dataframes to see if they are the same ?
+#### without writing the code, how would you compare 2 dataframes to see if they are the same ?
 
 to compare 2 dataframes and see if they are the same I would use pandas. 
 If what we want to see is if our dataframe A and dataframe B are equal before we put to compare by means of programming the first thing that would do is some simple verifications to know if realment is worth comparing them (this is as if we are doctors and we want to save the life to a patient, the first thing that interests us is if esata alive, to know the pulse etc..) in our case what interests us first verifications would do it by means of dataframA.info() dataframeB.ingo(), if simply they have different dimension already we know that they cannot be equal.
@@ -109,14 +109,14 @@ If what we want to see is if our dataframe A and dataframe B are equal before we
 Let's imagine they have the same dimension, the next thing we need to do is to set all the columns to the same name and the same data type, and then we are ready to write the code to compare them.
 
 
-### Imagine your dataframe contains nan values, how would you compare the two dataframes ?
+#### Imagine your dataframe contains nan values, how would you compare the two dataframes ?
 
 Using methods like dataframe1.compare(dataframe2) will not work if the dataframe had null values as the  the comparation nan == nan is false. ( we can not compare two unknow thins
 because we dont know them,) so in this case it may be interesting to replace nan by some value you know such as "nan" or 999999 and then proceed to compare them again.
 
-### Data Type questions(are not part of an interview as a python developer as they are very advanced)
+#### Data Type questions(are not part of an interview as a python developer as they are very advanced)
 
-#### 1 What is the result of this ?
+##### 1 What is the result of this ?
           x = 0.1 + 0.1 + 0.1
           y = 0.3
           x == y
