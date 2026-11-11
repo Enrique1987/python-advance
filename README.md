@@ -1,77 +1,97 @@
-## Python
+# Advanced Python Notes
 
 ![Python 3.7](https://img.shields.io/badge/Python-3.7-blue.svg)
 
-===========
-
-This repository includes all my personal notes taken during the different courses and books.
+This repository contains my personal notes from Python courses and books, along with examples and interview questions.
 
 ## Python Interview Questions
 
+### What bad practices have you encountered as a Python developer?
 
-#### In your experience as a python developer could you tell me about bad practices you have seen written ?
+The following examples are listed in no particular order:
 
-(they do not follow a specific order)
+- **Not following PEP 8 (low severity).** Run a linter automatically before each commit to check for style issues.
+- **Duplicated code (medium severity).** Repetition makes code harder to maintain. As a personal habit, I like to review code after a few days with fresh eyes to identify opportunities for improvement.
+- **Unclear variable and function names (medium severity).** Names should communicate their purpose. For example, `x` and `var1` provide little context:
 
-- **The most common is not writing according to pep8** (severity low)  
-   *Solution:* We set up the automated linter every time someone made a commit.
-- **Code repeated(severity medium)**  
-   Repeating code is a way of not having it optimised.  
-   *Solution:* As personal tip I like to review the code after a few days with fresh eyes to see if there is anything that could be improved.
+  ```python
+  for x in var1:
+      # Do something with x.
+      pass
+  ```
 
-- **Variables and funktions with non-self-clearing names (severity medium)**  
-    It is very common to see things like:
-	```
-	for x in var1:
-	    # do something with x
-	```	
-    Affects the readability of the code.
-	
-- Magic numbers
-- Death code
-- prints as logs (interesting in the dev phase but not in prod if it doesnt bring any extra value)
-- poorly organised code, should be: first imports, later funcions that you going to use and later the main.
-- O() notation.
-- Clases that should be a function.(I see that typical error from people that come from a OOP like Java)
-- Empty Except Blocks and Poor Error messages.
+- **Magic numbers.** Use named constants when a number's meaning is not obvious.
+- **Dead code.** Remove code that is no longer used.
+- **Using `print()` for logging.** Print statements can help during development, but production code generally benefits from structured logging with appropriate severity levels.
+- **Poorly organized code.** A typical module starts with imports, followed by function and class definitions, and then its main entry point.
+- **Ignoring algorithmic complexity.** Consider the time and space complexity of an approach using Big O notation.
+- **Creating a class when a function would suffice.** This can happen when developers apply patterns from languages such as Java without considering simpler Python alternatives.
+- **Empty `except` blocks and unhelpful error messages.** Handle exceptions deliberately and provide enough context to diagnose failures.
 
-#### What about Python best practices ?
+### What are some Python best practices?
 
-Well basically all in the Zen of Python.
+The Zen of Python summarizes several useful principles:
 
 - Simple is better than complex.
-- Flat is better thatn ntested.
+- Flat is better than nested.
 - Readability counts.
-- If the implementation is hard to expain, its a bad idea.
-- If the implementation is easy to explain, it ba be a good idea.
+- If the implementation is hard to explain, it's a bad idea.
+- If the implementation is easy to explain, it may be a good idea.
 
-#### can you tell me what is the output of that code ? 
+### What is the output of this code?
 
+This example deliberately contains a control-flow error:
+
+```python
+def analyze_age(age):
+    if age < 21:
+        print("You are a child")
+    if age >= 21:
+        print("You are an adult")
+    else:
+        print("The age must be a non-negative integer!")
+
+
+analyze_age(18)
 ```
-def analyzeAge( age ):
-   if age < 21:
-       print "You are a child"
-   if age >= 21: 
-       print "You are an adult"
-   else:   #Handle all cases where 'age' is negative 
-       print "The age must be a positive integer!"
 
-analyzeAge( 18 )  #Calling the function
+**Output:**
+
+```text
+You are a child
+The age must be a non-negative integer!
 ```
 
+### Why does the code produce this output, and how would you fix it?
 
-**Solution**
+The two `if` statements are evaluated independently. The `else` belongs only to the second `if`, so an age of 18 triggers both the first message and the error message.
 
->You are a child
->The age must be a positive integer!
+Use a single `if`/`elif`/`else` chain and check for negative values first. This example assumes that the input is an integer and uses 21 as its illustrative age threshold:
 
-#### Could you explain why is failing and how would you fix it ? 
+```python
+def analyze_age(age):
+    if age < 0:
+        print("The age must be a non-negative integer!")
+    elif age < 21:
+        print("You are a child")
+    else:
+        print("You are an adult")
 
-its failing caise the second if should be a elif.
 
-#### continue vs pass vs break:
-
+analyze_age(18)
 ```
+
+**Output:**
+
+```text
+You are a child
+```
+
+### What is the difference between `pass`, `continue`, and `break`?
+
+Compare these three examples:
+
+```python
 a = [1, 2, 0, 3]
 for element in a:
     if not element:
@@ -79,18 +99,15 @@ for element in a:
     print(element)
 ```
 
-vs
-
-```
+```python
 a = [1, 2, 0, 3]
 for element in a:
     if not element:
         continue
     print(element)
 ```
-vs
 
-```
+```python
 a = [1, 2, 0, 3]
 for element in a:
     if not element:
@@ -98,57 +115,91 @@ for element in a:
     print(element)
 ```
 
-**solution**
-`pass` will do nothing(afther the pass will print) but `continue` will ignore the complete loop(not printing if enter in the continue) mean `break` will break the loop and finish
+**Explanation:**
 
-#### without writing the code, how would you compare 2 dataframes to see if they are the same ?
+- `pass` does nothing, so execution continues with `print(element)`. The first example prints `1`, `2`, `0`, and `3`, each on a separate line.
+- `continue` skips the rest of the current iteration. The second example prints `1`, `2`, and `3`.
+- `break` exits the loop immediately. The third example prints `1` and `2`.
 
-to compare 2 dataframes and see if they are the same I would use pandas. 
-If what we want to see is if our dataframe A and dataframe B are equal before we put to compare by means of programming the first thing that would do is some simple verifications to know if realment is worth comparing them (this is as if we are doctors and we want to save the life to a patient, the first thing that interests us is if esata alive, to know the pulse etc..) in our case what interests us first verifications would do it by means of dataframA.info() dataframeB.ingo(), if simply they have different dimension already we know that they cannot be equal.
+### Without writing code, how would you compare two DataFrames for equality?
 
-Let's imagine they have the same dimension, the next thing we need to do is to set all the columns to the same name and the same data type, and then we are ready to write the code to compare them.
+I would use pandas and start by inspecting their shapes, column labels, indexes, and data types. `DataFrame.info()` provides a useful overview, while `DataFrame.shape` gives the number of rows and columns. Different shapes mean the DataFrames cannot be equal.
 
+Next, I would establish what equality means for the task, including whether row order, column order, and data types matter. I would only rename, reorder, or convert data when the comparison requirements call for it.
 
-#### Imagine your dataframe contains nan values, how would you compare the two dataframes ?
+For a Boolean equality check, use `dataframe_a.equals(dataframe_b)`. Corresponding values and their data types must match. For a detailed view of differences between identically labeled DataFrames, use `dataframe_a.compare(dataframe_b)`.
 
-Using methods like dataframe1.compare(dataframe2) will not work if the dataframe had null values as the  the comparation nan == nan is false. ( we can not compare two unknow thins
-because we dont know them,) so in this case it may be interesting to replace nan by some value you know such as "nan" or 999999 and then proceed to compare them again.
+### How would you compare DataFrames that contain `NaN` values?
 
-#### Data Type questions(are not part of an interview as a python developer as they are very advanced)
+Although a scalar comparison such as `float("nan") == float("nan")` returns `False`, pandas provides comparison methods that handle missing values:
 
-##### 1 What is the result of this ?
-          x = 0.1 + 0.1 + 0.1
-          y = 0.3
-          x == y
-		  
-The result is `False` as the float numbers does not have exactly representation.
+- `DataFrame.equals()` treats `NaN` values in corresponding positions as equal.
+- `DataFrame.compare()` does not report matching `NaN` values as differences. It requires the same shape and identical row and column labels.
 
-    0.1 --> 0.1000000000000000055511151
-    x --> 0.3000000000000000444089210
-    y --> 0.2999999999999999888977698
+There is no need to replace missing values with arbitrary placeholders such as `"nan"` or `999999`, which could be confused with real data.
 
-One simple way to compare floats could be :
-    x = 0.1 + 0.1 + 0.1
-    y = 0.3
-    round(x, 5) == round(y, 5)
+See the pandas documentation for [`DataFrame.equals()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.equals.html) and [`DataFrame.compare()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.compare.html).
 
-   True.
+## Numeric Types
 
-#### How would you round a variable that represent the Age of somebody.
+### What is the result of this floating-point comparison?
 
-    With `floor` , the reason is that someone who have 23 years and 11 months is said to have 23 years, rounding is always downwards.
-	
-#### What is the result of:
+```python
+x = 0.1 + 0.1 + 0.1
+y = 0.3
+print(x == y)
+```
 
-    floor(-10.4) result: -11
-    floor(11.4) result: 11
-	
-#### what is the different of decimal and float in python ?
+**Output:**
 
-	One of the differences they have is the way they store the data, float is represented as a fraction while decimal is stored as a string. 
-    Because of this some floats do not have exact representation such as 0.1.
-	
-#### floats vs decimals, what are the advantages of each one ?	
+```text
+False
+```
 
-    floats: faster.
-	decimals: more precise.
+Many decimal fractions cannot be represented exactly as binary floating-point numbers. In this example, the stored values are approximately:
+
+```text
+0.1 -> 0.1000000000000000055511151
+x   -> 0.3000000000000000444089210
+y   -> 0.2999999999999999888977698
+```
+
+Rounding both values to five decimal places produces `True` for this example:
+
+```python
+print(round(x, 5) == round(y, 5))  # True
+```
+
+For approximate numerical comparisons, [`math.isclose()`](https://docs.python.org/3/library/math.html#math.isclose) lets you specify tolerances appropriate to the problem:
+
+```python
+from math import isclose
+
+print(isclose(x, y, rel_tol=1e-9, abs_tol=1e-12))  # True
+```
+
+### How would you round an age expressed in years?
+
+If the value represents a non-negative age in years and the goal is to report completed years, use `math.floor()`. For example, someone aged 23 years and 11 months is still 23 in completed years.
+
+### What does `floor()` return for positive and negative values?
+
+```python
+from math import floor
+
+print(floor(-10.4))  # -11
+print(floor(11.4))   # 11
+```
+
+`floor()` returns the greatest integer less than or equal to its argument, so it rounds toward negative infinity.
+
+### What is the difference between `float` and `Decimal` in Python?
+
+`float` uses binary floating-point representation. Some decimal fractions, such as `0.1`, therefore have no exact representation as a `float`.
+
+[`Decimal`](https://docs.python.org/3/library/decimal.html) uses decimal floating-point representation with configurable precision and rounding. It can represent decimal values such as `0.1` exactly when constructed from a string, for example `Decimal("0.1")`. A `Decimal` stores a sign, digits, and an exponent; it is not simply stored as a string.
+
+### What are the advantages of `float` and `Decimal`?
+
+- **`float`:** Generally faster and suitable for many scientific and numerical calculations where small representation errors are acceptable.
+- **`Decimal`:** Useful when exact decimal representation and explicit control over precision and rounding matter. Arithmetic is still subject to the configured precision; not every calculation has an exact finite result.
